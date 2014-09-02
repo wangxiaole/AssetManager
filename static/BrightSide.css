@@ -166,11 +166,11 @@ form.searchform input.button {
 	  LAYOUT
 ************************/
 #wrap {
-	background: #D3D4CA;
+	background: white;
 	width: 920px; 
-	height: 600px;
+	height: auto;
 	margin: auto;
-	margin-bottom: 100px;	
+	margin-bottom: auto;	
 	text-align: left;
 }
 #content-wrap {
@@ -193,7 +193,7 @@ form.searchform input.button {
 /* main */
 #main {
 	float: left;
-	margin-left: 30px;
+	margin-left: 2px;
 	padding: 0;
 	width: 70%;		
 }
@@ -318,6 +318,52 @@ form.searchform input.button {
    background-position:100% -42px;
 	color: #FFF;
 }
+
+/***********************
+	  TABLE
+************************/
+
+body,table{
+    font-size:12px;
+}
+table{
+    table-layout:fixed;
+    empty-cells:show; 
+    border-collapse: collapse;
+    margin:0 auto;
+}
+td{
+    height:20px;
+}
+h1,h2,h3{
+    font-size:12px;
+    margin:0;
+    padding:0;
+}
+
+.title { background: #FFF; border: 1px solid #9DB3C5; padding: 1px; width:90%;margin:20px auto; }
+    .title h1 { line-height: 31px; text-align:center;  background: #2F589C url(); background-repeat: repeat-x; background-position: 0 0; color: #FFF; }
+        .title th, .title td { border: 1px solid #CAD9EA; padding: 5px; }
+
+
+/*这个是借鉴一个论坛的样式*/
+table.t1{
+    border:1px solid #cad9ea;
+    color:#666;
+}
+table.t1 th {
+   /* background-image: url(th_bg1.gif);*/
+    background-repeat::repeat-x;
+    height:30px;
+}
+table.t1 td,table.t1 th{
+    border:1px solid #cad9ea;
+    padding:0 1em 0;
+}
+table.t1 tr.a1{
+    background-color:#f5fafe;
+}
+
 /* end menu tabs */
 
 /* alignment classes */

@@ -33,8 +33,9 @@ def teardown_request(exception):
 		db.close()
 
 @app.route('/user/<username>')
-def main(username):
-	return render_template('main.html',username=username)
+def myAssets(username):
+	session['myAssets_in'] = True
+	return render_template('myAssets.html',username=username)
 
 @app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
@@ -48,8 +49,8 @@ def login():
 		else:
 			session['logged_in'] = True
 			flash('You ware logged in')
-			return redirect(url_for('main',username=request.form['username']))
-	return render_template('login1.html', error=error)
+			return redirect(url_for('myAssets',username=request.form['username']))
+	return render_template('login.html', error=error)
 
 #control for log_out
 @app.route('/logout')
@@ -57,6 +58,7 @@ def logout():
 	session.pop('logged_in', None)
 	flash('You were logged_out')
 	return redirect(url_for('show_entries'))
+
 
 if __name__ == '__main__':
 	app.run(host = '0.0.0.0')

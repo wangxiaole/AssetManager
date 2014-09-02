@@ -1,14 +1,11 @@
 {% extends "layout.html" %}
 {% block body %}
-	{% if not session.logged_in %}
-    <script type="text/javascript">document.getElementById('login-form-wrap').style.display='inline'</script>
-  {% endif %}
 	{% if session.logged_in %}
     <script type="text/javascript">document.getElementById('sidebar').style.display='inline'</script>
-  
+  <div id="product info">
         <div class="title">
     <h1>My Asset Info</h1>   
-</div>
+	</div>
 <table width="90%" id="mytab"  border="1" class="t1">
   <thead>
     <th width="10%">Product ID</th>
@@ -36,7 +33,7 @@
     <td>北京天安门</td>
   </tr>
 </table>
-   
+ </div>  
   {% endif %}  
 
 {% endblock %}

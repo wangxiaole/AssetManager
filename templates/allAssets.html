@@ -1,42 +1,54 @@
 {% extends "layout.html" %}
 {% block body %}
-	{% if not session.logged_in %}
-    <script type="text/javascript">document.getElementById('login-form-wrap').style.display='inline'</script>
-  {% endif %}
-	{% if session.logged_in %}
+	{% if session.myAssets_in %}
     <script type="text/javascript">document.getElementById('sidebar').style.display='inline'</script>
-  
+  <div id="product info">
         <div class="title">
-    <h1>My Asset Info</h1>   
-</div>
+    <h1>All Assets </h1>   
+	</div>
 <table width="90%" id="mytab"  border="1" class="t1">
   <thead>
     <th width="10%">Product ID</th>
     <th width="30%">Product Type</th>
     <th width="20%">Product Info</th>
+    <th width="20%">User Name</th>
+    <th width="20%">Use status</th>
+    <th width="20">option</th>
   </thead>
   <tr class="a1">
     <td>wallimn</td>
     <td>http://blog.csdn.net/wallimn</td>
     <td>wallimn@tom.com</td>
+    <td>wangxiaole</td>
+    <td>using</td>
+    <td><input type="submit" value="Modify"></td>
   </tr>
   <tr>
     <td>长三江</td>
     <td>村在</td>
     <td>北京天安门</td>
+    <td>wangxiaole</td>
+    <td>using</td>
+    <td><input type="submit" value="Modify"></td>
   </tr>
   <tr class="a1">
     <td>长三江</td>
     <td>村在</td>
     <td>北京天安门</td>
+    <td>wangxiaole</td>
+    <td>using</td>
+    <td><input type="submit" value="Modify"></td>
   </tr>
   <tr>
     <td>长三江</td>
     <td>村在</td>
     <td>北京天安门</td>
+    <td>wangxiaole</td>
+    <td>using</td>
+    <td><input type="submit" value="Modify"></td>
   </tr>
 </table>
-   
+ </div>  
   {% endif %}  
 
 {% endblock %}
