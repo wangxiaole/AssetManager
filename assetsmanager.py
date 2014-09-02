@@ -49,7 +49,7 @@ def login():
 			session['logged_in'] = True
 			flash('You ware logged in')
 			return redirect(url_for('main',username=request.form['username']))
-	return render_template('login.html', error=error)
+	return render_template('login1.html', error=error)
 
 #control for log_out
 @app.route('/logout')

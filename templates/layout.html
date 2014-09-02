@@ -1,9 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<title>Bright Side of Life</title>
+<title>先锋商泰资产管理系统登陆</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'BrightSide.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename = 'Login.css')}}" media="screen" type="text/css" />
 </head>
 <body>
 <div id="wrap">
@@ -23,6 +24,9 @@
     </div>
     <div id="main">
       {% block body %} {% endblock %}
+    </div>
+    <div id="login">
+      {% block login %} {% endblock %}
     </div>
   </div>
   
