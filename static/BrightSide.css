@@ -198,13 +198,6 @@ form.searchform input.button {
 	width: 70%;		
 }
 
-#login {
-	float: left;
-	margin: 0 auto;
-	padding: 0;
-	width: 100%;
-}
-
 .post-footer {
 	background-color: #FAFAFA;
 	padding: 5px; margin: 20px 15px 0 15px;

@@ -37,6 +37,10 @@ def myAssets(username):
 	session['myAssets_in'] = True
 	return render_template('myAssets.html',username=username)
 
+@app.route('/allAssets')
+def allAssets():
+	return render_template('allAssets.html')
+
 @app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -48,9 +52,10 @@ def login():
 			error = 'Invalid password'
 		else:
 			session['logged_in'] = True
+			session['username'] = request.form['username']
 			flash('You ware logged in')
 			return redirect(url_for('myAssets',username=request.form['username']))
-	return render_template('login.html', error=error)
+	return render_template('login1.html', error=error)
 
 #control for log_out
 @app.route('/logout')

@@ -12,9 +12,9 @@
     <div id="sidebar">
       <h1>Assets Manager</h1>
       <ul class="sidemenu">
-        <li><a href="allAssets.html">My Assets</a></li>
+        <li><a href="{{url_for('myAssets', username=session.username)}}">My Assets</a></li>
         <li><a href="#">Asset search</a></li>
-        <li><a href="#SampleTags">all Assets</a></li>
+        <li><a href="{{url_for('allAssets')}}">all Assets</a></li>
         <li><a href="#">New Asset</a></li>
       </ul>
       <h1>Account Manager</h1>
