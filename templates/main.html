@@ -1,0 +1,6 @@
+{% extends "layout.html" %}
+{% block body %}
+	{% if session.logged_in %}
+    <script type="text/javascript">document.getElementById('sidebar').style.display='inline'</script>
+  {% endif %}
+{% endblock %}

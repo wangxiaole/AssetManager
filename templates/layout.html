@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Bright Side of Life</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'BrightSide.css')}}">
+</head>
+<body>
+<div id="wrap">
+  <div id="content-wrap"> <img src="../static/headerphoto.jpg" width="920" height="120" alt="headerphoto" class="no-border" />
+    <div id="sidebar">
+      <h1>Assets Manager</h1>
+      <ul class="sidemenu">
+        <li><a href="#">My Assets</a></li>
+        <li><a href="#TemplateInfo">Asset search</a></li>
+        <li><a href="#SampleTags">all Assets</a></li>
+        <li><a href="#">New Asset</a></li>
+      </ul>
+      <h1>Account Manager</h1>
+      <ul class="sidemenu">
+        <li><a href="#">Change Password</a></li>
+      </ul>
+    </div>
+    <div id="main">
+      {% block body %} {% endblock %}
+    </div>
+  </div>
+  
+  <div id="footer">
+    <div class="footer-left">
+      <p class="align-left"> &copy;2014 <strong> Suntec Software(Shanghai) Co., Ltd. All right reserved</strong> | Design by 2014 Fresh Team</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
