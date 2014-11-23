@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <script type="text/javascript">
+    document.getElementById('sidebar').style.display='inline'
+    document.getElementById('logout').style.display='inline'
+    </script>
+
+    <div class="title" margin-bottom:="10px"; style="
+    margin-left: 20px;
+    margin-right: 20px;
+">
+    <h1>更改用户基本信息</h1>
+</div>
+
+    <div id="add asset">       
+        <div class="change-form-wrap">
+          <div class="login-form">
+          <form action="{{ url_for('updateEmployeeInfomation') }}" method=post style="background:#FFF;border:0px;">
+              <label>
+                <input type="text" name="employee_name" id = "employee_name" required placeholder="姓名">
+              </label>
+              <script type="text/javascript">
+                var name = '{{entry[0].name}}';
+                if(name != 'None'){
+                  document.getElementById('employee_name').value = name;
+                }
+              </script>
+
+              <label>
+               <input id="dept" type="text" name="dept" required placeholder="所属部门">
+              </label>
+              <script type="text/javascript">
+                var dept = '{{entry[0].dept}}';
+                if(dept != 'None'){
+                  document.getElementById('dept').value = dept;
+                }
+              </script>
+
+              <label>
+                <input id="group" type="text" name="group"  placeholder="所属小组">
+              </label> 
+              <script type="text/javascript">
+                var group = '{{entry[0].group}}';
+                if(group != 'None'){
+                  document.getElementById('group').value = group;
+                }
+              </script>
+
+              <label>
+                <input id="tel" type="text" name="tel"  required placeholder="电话">
+              </label> 
+              <script type="text/javascript">
+                var tel = '{{entry[0].tel}}';
+                if(tel != 'None'){
+                  document.getElementById('tel').value = tel;
+                }
+              </script>
+
+              <label>
+                <input id="jabber" type="text" name="jabber"  placeholder="jabber">
+              </label> 
+              <script type="text/javascript">
+                var jabber = '{{entry[0].jabber}}';
+                if(jabber != 'None'){
+                  document.getElementById('jabber').value = jabber;
+                }
+              </script>
+
+              <label>
+                <input id="email" type="text" name="email" placeholder="邮箱">
+              </label>
+              <script type="text/javascript">
+                var email = '{{entry[0].email}}';
+                if(email != 'None'){
+                  document.getElementById('email').value = email;
+                }
+              </script>
+
+              <input type="submit" value="更改">
+              </form>
+          </div>          
+      </div>
+    </div>  
+  {% endif %}  
+
+{% endblock %}

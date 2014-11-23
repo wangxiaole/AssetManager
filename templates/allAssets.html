@@ -1,63 +1,127 @@
 {% extends "layout.html" %}
 {% block body %}
-	{% if session.myAssets_in %}
-    <script type="text/javascript">document.getElementById('sidebar').style.display='inline'</script>
+	{% if session.level == 1%}
+    <script type="text/javascript">
+    document.getElementById('sidebar').style.display='inline'
+    document.getElementById('logout').style.display='inline'
+
+     $(function() {
+      
+      availableTags = [];
+
+    {%for entry in entries1%}
+      availableTags.push('{{entry.productType}}') 
+      {%endfor%}
+      $( "#AllSetstype" ).autocomplete({
+        minLength: 1,
+        source: availableTags
+      });
+
+      model = [];
+      {%for entry in entries2%}
+      model.push('{{entry.productModel}}'.replace(/&amp;/,'&')) 
+      {%endfor%}
+      $( "#model" ).autocomplete({
+        minLength: 1,
+        source: model
+      });
+    });
+
+    function display(value){
+      if(value=='0'){
+        document.getElementById('model').style.display='None'
+        document.getElementById('AllSetstype').style.display='None'
+        document.getElementById('status').style.display='None'
+      }
+      else if(value=='1'){
+        document.getElementById('model').style.display='inline'
+        document.getElementById('AllSetstype').style.display='None'
+        document.getElementById('status').style.display='None'
+      }
+      else if(value=='2'){
+        document.getElementById('model').style.display='None'
+        document.getElementById('AllSetstype').style.display='inline'
+        document.getElementById('status').style.display='None'
+      }
+      else if(value=='3'){
+        document.getElementById('model').style.display='None'
+        document.getElementById('AllSetstype').style.display='None'
+        document.getElementById('status').style.display='inline'
+      }
+    }
+
+   </script>
+  
   <div id="product info">
        <div class="title" margin-bottom:="10px"; style="
     margin-left: 20px;
     margin-right: 20px;
 ">
-    <h1>All Assets </h1>   
+    <h1>所有资产</h1>   
   </div>
-<table id="mytab" width="" border="1" class="t1" style="
+  <div class="search-form-wrap" style="margin-left:40px;width:100%;height:30px"> 
+     <form action="{{ url_for('allAssets') }}" method=post style="background:#FFF;border:0px;">
+
+      <select id="key" name="key" size="1" onchange="display(this.value)">
+       <option value="0">所有资产</option>
+       <option value="1">所属项目</option>
+       <option value="2">设备类型</option>
+       <option value="3">设备状态</option>
+       </select> 
+    
+    <label>
+       <input id="model" type="text" name="model" placeholder="输入所属项目名" style="display:None">
+    </label>
+
+    <label>
+       <input id="AllSetstype" type="text" name="AllSetstype" placeholder="输入设备类型" style="display:None">
+    </label>
+
+     <select id="status" name="status" size="1" style="display:None">
+       <option value="可使用">可使用</option>
+       <option value="损坏">损坏</option>
+       <option value="销毁">销毁</option>
+     </select>
+
+     <input type="submit" value="查询">  
+   </form>   
+    </div> 
+
+<table id="mytab" class="t1" style="
+    border: 1px;
+    width: 100%;
     margin-left: 20px;
     margin-right: 20px;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 10px;
     word-break:break-all;
+    text-align: center;
 ">
   <thead>
-    <th width="30%">Product ID</th>
-    <th width="20%">Product Type</th>
-    <th width="20%">Product Info</th>
-    <th width="20%">User Name</th>
-    <th width="20%">Status</th>
-    <th width="20%">option</th>
+    <th width="15%">资产编号</th>
+    <th width="15%">所属项目</th>
+    <th width="15%">资产类型</th>
+    <th width="15%">资产状态</th>
+    <th width="15%">使用者工号</th>
+    <th width="15%">仕向地</th>
+    <th width="10%">操作</th>
   </thead>
+  
+ {% for entry in entries %}
+
   <tr class="a1">
-    <td>wallimn</td>
-    <td>http://blog</td>
-    <td>wallimn@tom.com</td>
-    <td>wangxiaole</td>
-    <td>using</td>
-    <td><input type="submit" value="Modify"></td>
-  </tr>
-  <tr>
-    <td>长三江</td>
-    <td>村在</td>
-    <td>北京天安门</td>
-    <td>wangxiaole</td>
-    <td>using</td>
-    <td><input type="submit" value="Modify"></td>
-  </tr>
-  <tr class="a1">
-    <td>长三江</td>
-    <td>村在</td>
-    <td>北京天安门</td>
-    <td>wangxiaole</td>
-    <td>using</td>
-    <td><input type="submit" value="Modify"></td>
-  </tr>
-  <tr>
-    <td>长三江</td>
-    <td>村在</td>
-    <td>北京天安门</td>
-    <td>wangxiaole</td>
-    <td>using</td>
-    <td><input type="submit" value="Modify"></td>
-  </tr>
-</table>
- </div>  
-  {% endif %}  
+    <td name = "td1"><a onclick="location.href='{{url_for('assetUsingHistory',asset_id= entry.productID)}}'">{{ entry.productID }}</a></td>
+    <td name = "td2">{{ entry.productModel}}</td>
+    <td name = "td3">{{ entry.productType}}</td>
+    <td name = "td4">{{ entry.status}}</td>
+    <td name = "td5">{{ entry.employee_id}}</td>
+    <td name = "td6">{{ entry.destination}}</td>
+    <!-- <td><input id = "modify" type="button" value="修改" onclick="modify({{entry}})"></td> -->
+    <td><input id = "modify" type="button" value="修改" onclick="location.href='modifyAssetInfo?ID={{entry.productID}}&model={{entry.productModel}}&type={{entry.productType}}&username={{entry.employee_id}}&destination={{entry.destination}}&status={{entry.status}}'"></td>
+    </tr>
+    {% endfor %}
+  </table>
+   </div>
+<!--   {% endif %}   -->
 
 {% endblock %}

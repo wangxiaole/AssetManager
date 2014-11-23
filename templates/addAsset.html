@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <script type="text/javascript">
+    document.getElementById('sidebar').style.display='inline'
+    document.getElementById('logout').style.display='inline'
+
+    function changeColor(x){
+      document.getElementById(x).style.color='#000000'
+      document.getElementById(x).style.textAlign='center'
+    }
+
+    $(function() {
+      
+      availableTags = [];
+
+    {%for entry in entries1%}
+      availableTags.push('{{entry.productType}}') 
+    {%endfor%}
+      $( "#assetType" ).autocomplete({
+        minLength: 1,
+        source: availableTags
+      });
+
+      model = [];
+      {%for entry in entries2%}
+      model.push('{{entry.productModel}}') 
+      {%endfor%}
+      $( "#model" ).autocomplete({
+        minLength: 1,
+        source: model
+      });
+    });
+
+    </script>
+    <div class="title" margin-bottom:="10px"; style="
+    margin-left: 20px;
+    margin-right: 20px;
+">
+    <h1>添加资产</h1>
+</div>
+
+    <div id="add asset">       
+        <div class="change-form-wrap">
+          <div class="login-form">
+          <form action="{{ url_for('addAsset') }}" method=post style="background:#FFF;border:0px;">
+              <label>
+                <input type="text" name="assetId" id = "assetId"  required placeholder="资产编号(*)">
+              </label>
+
+              <label>
+               <input id="model" type="text" name="model"  required placeholder="所属项目名(*)">
+              </label>
+
+              <label>
+               <input id="assetType" type="text" name="assetType"  required placeholder="设备类型(*)">
+              </label>
+
+              <label>
+                <input id="comment" type="text" name="comment"  placeholder="附加信息">
+              </label> 
+
+              <label>
+                <input id="employeeId" type="text" name="employeeId"  required placeholder="使用者工号">
+              </label> 
+              <script type="text/javascript">
+                document.getElementById('employeeId').value = '{{session['userid']}}';
+              </script>
+
+              <label>
+                <input id="destination" type="text" name="destination"  placeholder="仕向地">
+              </label> 
+
+              <label>
+                <input id="fromDpt" type="text" name="fromDpt"  placeholder="客户担当部门">
+              </label>
+
+              <select  id="state" name="state" size="1" onchange="changeColor(this.id)" style=" width: 100%;height: 30px;line-height:40px;color:#C0C0C0;
+                border: 1px solid #314d89;background: #FFF;border-radius: 4px 4px 4px 4px;">
+                <option value="可使用">可使用</option>
+                <option value="损坏">损坏</option>
+                <option value="销毁">销毁</option>
+                </select>     
+              <input type="submit" value="添加">
+              </form>
+          </div>          
+      </div>
+    </div>  
+  {% endif %}  
+
+{% endblock %}

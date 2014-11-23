@@ -7,7 +7,7 @@
     </script>
   <div id="product info">
         <div class="title" style="margin-left: 20px; margin-right: 20px;">
-    	<h1>我的资产</h1>   
+    	<h1>资产使用记录</h1>   
 		</div>
 <table id="mytab" class="t1" style="
     border: 1px;
@@ -17,16 +17,21 @@
     margin-top: 10px;
     margin-bottom: 10px;
     word-break:break-all;
+    text-align: center;
 ">
   <thead>
-    <th width="10%">资产编号</th>
-    <th width="30%">资产类型</th>
-    <th width="20%">资产借入时间</th>
+    <th width="10%">姓名</th>
+    <th width="15%">电话</th>
+    <th width="25%">邮件</th>
+    <th width="10%">部门</th>
+    <th width="20%">使用时间</th>
   </thead>
  {% for entry in entries %}
   <tr class="a1">
-    <td>{{ entry.productID }}</td>
-    <td>{{ entry.productType}}</td>
+    <td>{{ entry.name }}</td>
+    <td>{{ entry.tel}}</td>
+    <td>{{ entry.email}}</td>
+    <td>{{ entry.dept}}
     <td>{{ entry.time}}</td>
     </tr>
   {% endfor %}

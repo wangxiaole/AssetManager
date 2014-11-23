@@ -167,7 +167,7 @@ form.searchform input.button {
 ************************/
 #wrap {
 	background: white;
-	width: 920px; 
+	width: 82%; 
 	height: auto;
 	margin: auto;
 	margin-bottom: auto;	
@@ -197,6 +197,23 @@ form.searchform input.button {
 	padding: 0;
 	width: 70%;		
 }
+
+#login {
+	float: left;
+	margin-left: 0px;
+	padding: 0;
+	width: 100%;
+}
+
+#logout {
+	float: right;
+	margin-right: 10px;
+	padding: 0;
+	width: 100%;
+	text-align: right;
+	display: none;
+}
+
 
 .post-footer {
 	background-color: #FAFAFA;
@@ -250,7 +267,7 @@ form.searchform input.button {
 	border-top: 5px solid #568EB6;
 	margin: 0; padding: 0; 
 	height: 50px;	  
-	margin-top: 420px;
+	margin-top: 65%;
 	font-size: 95%;		
 }
 #footer a { 
@@ -334,9 +351,26 @@ h1,h2,h3{
     padding:0;
 }
 
-.title { background: #FFF; border: 1px solid #9DB3C5; padding: 1px; width:90%;margin:20px auto; }
-    .title h1 { line-height: 31px; text-align:center;  background: #2F589C url(); background-repeat: repeat-x; background-position: 0 0; color: #FFF; }
-        .title th, .title td { border: 1px solid #CAD9EA; padding: 5px; }
+.title { 
+	background: #FFF; 
+	border: 1px solid #9DB3C5; 
+	padding: 1px; 
+	width:100%;
+	margin:20px auto; 
+}
+
+.title h1 { 
+	line-height: 31px; 
+	text-align:center;  
+	background: #2F589C url(); 
+	background-repeat: repeat-x; 
+	background-position: 0 0; 
+	color: #FFF; 
+}
+.title th, .title td { 
+	border: 1px solid #CAD9EA; 
+	padding: 5px; 
+}
 
 
 /*这个是借鉴一个论坛的样式*/

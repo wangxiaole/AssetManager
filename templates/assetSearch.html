@@ -1,0 +1,150 @@
+{% extends "layout.html" %}
+{% block body %}
+
+{% if session.logged_in %}
+    <script type="text/javascript">
+    document.getElementById('sidebar').style.display='inline'
+    document.getElementById('logout').style.display='inline'
+
+	 $(function() {
+	    
+	    availableTags = [];
+
+		{%for entry in assetType%}
+	    availableTags.push('{{entry.productType}}')	
+	    {%endfor%}
+	    $( "#assetType" ).autocomplete({
+	      minLength: 1,
+	      source: availableTags
+	    });
+
+	    model = [];
+
+	    {%for entry in assetModel%}
+	      model.push('{{entry.productModel}}') 
+	    {%endfor%}
+	      $( "#model" ).autocomplete({
+	        minLength: 1,
+	        source: model
+	      });
+	  });
+
+    function display(value){
+    	if(value=='1' || value=='0'){
+    		document.getElementById('asset_id').style.display='inline'
+    		document.getElementById('model').style.display='None'
+    		document.getElementById('assetType').style.display='None'
+    		document.getElementById('status').style.display='None'
+    		document.getElementById('error').style.display='None'
+    	}
+    	else if(value=='2'){
+    		document.getElementById('asset_id').style.display='None'
+    		document.getElementById('model').style.display='inline'
+    		document.getElementById('assetType').style.display='None'
+    		document.getElementById('status').style.display='None'
+    		document.getElementById('error').style.display='None'
+    	}
+    	else if(value=='3'){
+    		document.getElementById('asset_id').style.display='None'
+    		document.getElementById('model').style.display='None'
+    		document.getElementById('assetType').style.display='inline'
+    		document.getElementById('status').style.display='None'
+    		document.getElementById('error').style.display='None'
+    	}
+    	else if(value=='4'){
+    		document.getElementById('asset_id').style.display='None'
+    		document.getElementById('model').style.display='None'   		
+    		document.getElementById('assetType').style.display='None'
+    		document.getElementById('status').style.display='inline'
+    		document.getElementById('error').style.display='None'
+    	}
+    }
+    </script>
+
+    <div class="title" margin-bottom:="10px"; style="
+    margin-left: 20px;
+    margin-right: 20px;
+">
+    <h1>查找资产</h1>
+</div>
+  	
+	  <div class="search-form-wrap" style="margin-left:40px;width:100%;height:30px"> 
+	  <form action="{{url_for('assetSearchDisplay')}}" method=post style="background:#FFF;border:0px;"> 	 
+
+	  	<select id="key" name="key" size="1" onchange="display(this.value)">
+	     <option value="0">请选择查询关键字</option>
+	     <option value="1">设备号</option>
+	     <option value="2">所属项目名</option>
+	     <option value="3">设备类型</option>
+	     <option value="4">设备状态</option>
+	     </select> 
+		
+	  <label>
+	     <input id="asset_id" type="text" name="asset_id" placeholder="输入设备号" style="display:None">
+	  </label>
+
+	  <label>
+       <input id="model" type="text" name="model" placeholder="输入所属项目名" style="display:None">
+      </label>
+
+	  <label>
+	     <input id="assetType" type="text" name="asset_type" placeholder="输入设备类型" style="display:None">
+	  </label>
+
+
+	 	 <select id="status" name="status" size="1" style="display:None">
+	     <option value="可使用">可使用</option>
+	     <option value="损坏">损坏</option>
+	     <option value="销毁">销毁</option>
+	 	 </select>
+
+	 	 <input type="submit" value="查询">  
+
+	 	 {% if error %}
+        	<p id= "error" class=error style="float:left"><strong>Error:</strong> {{error}}
+  		 {% endif %}
+	 </form>	 
+	  </div> 
+
+    <table id="mytab" class="t1" style="
+     	border: 1px;
+        width: 105%;
+	    margin-left: 10px;
+	    margin-right: 10px;
+	    margin-top:20px;
+	    margin-bottom: 10px;
+	    text-align: center;
+	    word-break:break-all;
+	">
+
+  <thead>
+    <th width="10%">编号</th>
+    <th width="12%">项目名</th>
+    <th width="10%">类型</th>
+    <th width="10%">状态</th>
+    <th width="10%">姓名</th>
+    <th width="28%">邮箱</th>
+    <th width="20%">电话</th>
+    {% if session.level == 1%}
+    <th width="10%">操作</th>
+    {%endif%}
+  </thead>
+
+	  {% for entry in entries %}
+	  <tr class="a1">
+	    <td>{{ entry.asset_id}}</td>
+	    <td>{{ entry.asset_model}}</td>
+	    <td>{{ entry.asset_type}}</td>
+	    <td>{{ entry.asset_status}}</td>
+	    <td>{{ entry.employee_name}}</td>
+	    <td>{{ entry.employee_email}}</td>
+	    <td>{{ entry.employee_tel}}</td>
+	   {% if session.level == 1%}
+    <!-- <td><input id = "modify" type="button" value="修改" onclick="modify({{entry}})"></td> -->
+    <td><input id = "modify" type="button" value="修改" onclick="location.href='modifyAssetInfo?ID={{entry.asset_id}}&model={{entry.asset_model}}&type={{entry.asset_type}}&employee_id={{entry.employee_id}}$destination={{entry.destination}}&status={{entry.asset_status}}'"></td>
+    {%endif%}
+	  </tr>
+  	  {% endfor %}
+	</table>
+  {% endif %}  
+{% endblock %}
